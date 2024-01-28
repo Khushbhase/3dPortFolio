@@ -1,4 +1,4 @@
-import emailjs from "@emailjs/browser";
+
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef, useState } from "react";
 import Fox from "../models/Fox";
@@ -25,51 +25,7 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     setCurrentAnimation("hit");
-
-    emailjs
-      .send(
-        "template_6wcd864",
-        "service_kbjryzo",
-        {
-          from_name: form.name,
-          to_name: "Khush bhase",
-          from_email: form.email,
-          to_email: "khushalbhase@gmail.com",
-          message: form.message,
-        },
-        "qyuHDR9mZgg0-HFL6"
-      )
-      .then(
-        () => {
-          setLoading(false);
-          showAlert({
-            show: true,
-            text: "Thank you for your message 😃",
-            type: "success",
-          });
-
-          setTimeout(() => {
-            hideAlert(false);
-            setCurrentAnimation("idle");
-            setForm({
-              name: "",
-              email: "",
-              message: "",
-            });
-          }, [3000]);
-        }).catch((error) => {
-          setLoading(false);
-          console.error(error);
-          setCurrentAnimation("idle");
-
-          showAlert({
-            show: true,
-            text: "I didn't receive your message 😢",
-            type: "danger",
-          });
-        }
-      );
-  };
+  }
 
   return (
     <section className='relative flex lg:flex-row flex-col max-container' >
